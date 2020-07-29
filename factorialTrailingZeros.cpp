@@ -30,6 +30,7 @@ public:
         int k = 5;
         int count = 0;
         
+        /*
         while (k <= n)
         {
             count += n / k;
@@ -39,8 +40,18 @@ public:
             else 
                 return count;
         }
+        */
     
+        // To get rid of Inteoverflow check in loop
+        // start with dividing num by 5 cnad keep continute
+        // in this case 25/5 = 5 and then 5/5 = 1 (1+6)
+        // like that for every multiple of 5
         
+        while (n >= 5)
+        {
+            count += n/5;
+            n /= 5;
+        }
         
         return count;
         
