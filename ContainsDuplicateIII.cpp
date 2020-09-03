@@ -47,6 +47,16 @@ public:
         
         if (n <= 1) return false;
         
+       // One of the test case which was taking long time was that 
+       // t = 0 and all elements were unique
+        
+       // To fix that we can use set ds to count unique elements.
+        
+        set<int> s(nums.begin(), nums.end());
+        
+        if (t == 0 && n == s.size()) return false;
+        
+        
         for (i = 0; i < n; i++)
         {
             for (j = i + 1; j <= i+k && j < n; j++)
