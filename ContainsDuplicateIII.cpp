@@ -36,6 +36,8 @@ Last executed input:
 Submitted Code: 3 minutes ago
 */
 
+/*
+
 class Solution {
 public:
     bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
@@ -59,5 +61,57 @@ public:
         }
         
         return false;
+    }
+};
+
+
+*/
+
+
+
+class Solution {
+    long getBucketId(long val, long width)
+    {
+        return val < 0 ? (val+1l)/width-1l : val/width;
+    }
+    
+public:
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+              
+        int n = nums.size();
+        if (n <= 1) return false;
+        if (t < 0) return false;
+        
+        // take care when t == 0
+        long width = (long)t + 1;
+        
+        map<long,long> hmap;
+        
+        for (int i = 0; i < n; i ++)
+        {
+            long bucketId = getBucketId((long)nums[i], width);
+            if (hmap.find(bucketId) != hmap.end())
+            {
+                return true;
+            }
+            if (hmap.find(bucketId - 1l) != hmap.end() && abs(hmap[bucketId - 1] - nums[i]) < width)
+            {
+                return true;
+            }
+            if (hmap.find(bucketId + 1l) != hmap.end() && abs(hmap[bucketId + 1] - nums[i]) < width)
+            {
+                return true;
+            }
+            
+            hmap[bucketId] = (long)nums[i];
+            if (i - k >= 0)
+            {
+                long oldBucketId = getBucketId((long)nums[i-k], width);
+                hmap.erase(oldBucketId);
+            }
+        }
+        
+        return false;
+    
     }
 };
