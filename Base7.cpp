@@ -69,3 +69,10 @@ public:
         
     }
 };
+
+/*
+Success
+Details 
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Base 7.
+Memory Usage: 5.9 MB, less than 84.54% of C++ online submissions for Base 7.
+/*
