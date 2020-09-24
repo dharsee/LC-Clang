@@ -109,3 +109,49 @@ Submitted: 0 minutes ago
 
 
 */
+
+
+/// Adding Optimal Solution for this problem 
+// runtime would be O(N) whenre N is length of th array
+
+class Solution {  
+public:
+    
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        
+        // Optimal solution for this problem with runtime O(N)
+        // Concept: sum(diff(gas[i], cost[i])) < 0 then there is no solution
+        // otherwise there is a solution, lets find the start index
+        
+        // Scan from 0 index and at any time if the tank goes < 0 then reset the index with next one and 
+        // rest tank val to 0
+        
+        int i, n = cost.size();
+        int sum = 0;
+        
+        
+        for (i = 0; i < n; i++) sum += (gas[i] - cost[i]);
+        
+        if (sum < 0) return -1; // Indicates that there wont be a possible solution
+        
+        // when we reach here - Solution exists, lets find the starting index
+        
+        int tank = 0;
+        int start_index = 0;
+        
+        for (i = 0; i < n; i++)
+        {
+            tank += (gas[i] - cost[i]);
+            
+            if (tank < 0) // This is very important for this optimal solution
+            {
+                start_index = i + 1;
+                tank = 0;
+            }
+        }
+        
+        // Simply return start index which was already saved in our single pass.
+        
+        return start_index;
+    }
+};
