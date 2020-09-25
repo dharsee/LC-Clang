@@ -98,3 +98,68 @@ Submitted: 6 minutes ago
   
   */
 };
+
+
+
+
+
+
+// Another attempt to solve this problem
+
+#if 0
+
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        
+        // Convert integer vector to string vector then sort with custom comparator then build the result
+        int i, n = nums.size();
+        
+        if (n == 0) return "";
+        if (n == 1) return to_string(nums[0]);
+        
+        vector<string> temp(n);
+        string res;
+        
+        // Convert integer vector to string vector
+        
+        bool all_are_zeros = true;
+        for (i = 0; i < n; i++)
+        {
+            if (nums[i]) all_are_zeros = false;
+            temp[i] = to_string(nums[i]);  
+        } 
+        
+        if (all_are_zeros) return "0";
+        
+        //Sort string vector with custom comparator
+        sort(temp.begin(), temp.end(), [](string &a, string &b){
+            string order1 = a + b;
+            string order2 = b + a; // Only these 2 possible combinations exist
+            
+            return order1 > order2;
+        });
+        
+        
+        // Build result string by scanning sorted string vector
+        for (i = 0; i < n; i++)
+        {
+            res += temp[i];
+        }
+        
+        return res;
+        
+        
+    }
+};
+
+/*
+
+222 / 222 test cases passed.
+Status: Accepted
+Runtime: 8 ms
+Memory Usage: 11.4 MB
+Submitted: 0 minutes ago
+
+*/
+#endif
