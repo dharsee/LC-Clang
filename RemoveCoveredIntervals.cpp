@@ -109,3 +109,54 @@ Submitted: 0 minutes ago
     
     */
 };
+
+
+//Optimized version, O(NlogN) where N - length of intervals arrays;due to sort
+
+
+
+class Solution {
+public:
+    
+    // Optimized version
+    int removeCoveredIntervals(vector<vector<int>>& intervals) {
+        
+        // Optimized over brute force method
+        // Sort intervals based on starting point
+        
+        int i;
+        int count = 0;
+        
+        if (intervals.size() <= 1) return intervals.size();;
+        
+        sort(intervals.begin(), intervals.end());
+        
+        vector<int> curr(2, -1);
+        
+        for (i = 0; i < intervals.size(); i++)
+        {
+            int a = intervals[i][0];
+            int b = intervals[i][1];
+            
+            if (a > curr[0] && b > curr[1])
+            {
+                count++;
+                curr[0] = a;
+            }
+            
+            curr[1] = max(b, curr[1]);
+        }
+        
+        return count;
+    }
+ /*
+ 32 / 32 test cases passed.
+Status: Accepted
+Runtime: 48 ms
+Memory Usage: 11.5 MB
+Submitted: 0 minutes ago
+
+ 
+ */
+ 
+};
