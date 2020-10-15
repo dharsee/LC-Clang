@@ -87,6 +87,7 @@ Submitted: 0 minutes ago
         }
     
     /*
+ // This is also working copy
 
     int rob(vector<int>& nums) {
         
@@ -102,6 +103,8 @@ Submitted: 0 minutes ago
         int i;
         vector<int> dp(n, 0);
         
+        
+        // This will 0 - (n - 1) consideration 
         // Initialize first 2 elements of the array
         dp[0] = nums[0];
         dp[1] = max(nums[0], nums[1]); // second will have choice
@@ -115,9 +118,11 @@ Submitted: 0 minutes ago
         
         vector<int> dp2(n, 0);
         
+        // This will 1 - (n) consideration 
+        
         // Initialize first 2 elements of the array
-        dp2[0] = nums[1];
-        dp2[1] = max(nums[1], nums[2]); // second will have choice
+        dp2[1] = nums[1];
+        dp2[2] = max(nums[1], nums[2]); // second will have choice
         
         for (i = 3; i < n; i++)
         {
