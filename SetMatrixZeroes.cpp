@@ -59,12 +59,15 @@ public:
     
     void setZeroes(vector<vector<int>>& matrix) {
         
-        // vector<vector<int>>& matrix
+       
         // 2 pass algorithm
         // in first pass - identify all the rows and coloumns which would need to
-        // mark as 0's and place a flag in their correpsonding row and col
+        // mark as 0's and place a flag in their correpsonding first row and first col
+        // Also mark first_row and first_col flags if correpsonding row or col has a zero in them
         
-        // in second pass: Flip/mark as zeros as per row/col's first val
+        // in second pass: Flip/mark as zeros as per row/col's first row/col value
+        
+        // At the end, mark first row or col with zero if their corrsponding flag is set
         
         // Pass - 1
         int i, j;
