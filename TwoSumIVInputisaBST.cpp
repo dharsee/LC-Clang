@@ -113,3 +113,74 @@ Space Complexity = O(N)
 
 
 */
+
+
+/*
+using deque container in C++
+
+
+
+*/
+
+
+class Solution {
+public:
+   
+    deque<int> q;
+    
+    void printQ() {
+        std::cout << "mydeque contains:";
+  
+        for (std::deque<int>::iterator it = q.begin(); it != q.end(); ++it)
+            std::cout << ' ' << *it;
+        
+        std::cout << '\n';
+    }
+    
+    // Function to convert BST To Sorted (Ascending Orde) Array
+    void traverse(TreeNode* root) {
+        if (!root) return;
+        
+        traverse(root->left);
+        q.push_front(root->val);
+        traverse(root->right);
+    }
+    
+    bool serach_in_queue(int k){
+        
+        //int left = 0, right = input.size() - 1;
+        
+        while (!q.empty())
+        {
+            if (q.size() == 1) return false;
+            // printQ();
+            // Accessing first and last elements from the queue
+            int curr_sum = q.front() + q.back();
+            
+            if (curr_sum == k) return true;
+            else if (curr_sum > k) q.pop_front();
+            else q.pop_back();
+        }
+        
+        return false;        
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        
+        traverse(root);
+        // printQ();
+        if (q.size() == 1) return false;
+        return serach_in_queue(k);
+        
+    }
+};
+
+/*
+422 / 422 test cases passed.
+Status: Accepted
+Runtime: 40 ms
+Memory Usage: 36.8 MB
+Submitted: 0 minutes ago
+
+
+*/
